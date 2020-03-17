@@ -1,0 +1,20 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "keywords": [
+    "backend",
+    "node",
+    "js"
+  ],
+  "author": "lidiya.yakubenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lidkapro/users/issues"
+  },
+  "homepage": "https://github.com/lidkapro/users#readme"
+}
