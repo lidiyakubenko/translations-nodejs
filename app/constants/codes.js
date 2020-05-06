@@ -5,9 +5,17 @@ const SUCCESS_CODES_MAP = {
 }
 
 const ERROR_CODES_MAP = {
-  duplicate: {
+  duplicate_key: {
+    code: 'duplicate_key',
+    message: 'такой ключ уже существует',
+  },
+  duplicate_locale: {
     code: 'duplicate_locale',
     message: 'такая локаль уже существует',
+  },
+  invalid_translation: {
+    code: 'invalid_translation',
+    message: 'only string',
   },
   invalid_locale: {
     code: 'invalid_locale',
@@ -15,7 +23,7 @@ const ERROR_CODES_MAP = {
   },
   null: {
     code: 'no_result',
-    message: 'такого объекта не существует',
+    message: 'такого ключа не существует',
   },
   121: {
     code: 'failed_validation',
