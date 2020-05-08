@@ -21,6 +21,7 @@ const updateAllLocales = ({
       },
     },
   }
+
   collection.find(params.id, params.query).toArray((err, result) => {
     if (err) {
       sendErr({ res, err })

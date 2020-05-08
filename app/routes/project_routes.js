@@ -32,4 +32,22 @@ module.exports = function (app, collection) {
       }
     })
   })
+
+  app.get('/getAllProjectNames', (req, res) => {
+    const params = {
+      query: {
+        fields: {
+          name: 1,
+        },
+      },
+    }
+
+    collection.find({}, params.query).toArray((err, result) => {
+      if (err) {
+        sendErr({ res, err })
+      } else {
+        sendRes({ res, data: result })
+      }
+    })
+  })
 }
