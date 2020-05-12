@@ -149,7 +149,10 @@ module.exports = function (app, collection) {
           if (value === null) {
             sendErr({ res, err: ERROR_CODES_MAP.null })
           } else {
-            sendRes({ res, data: value.translations[locale] })
+            sendRes({
+              res,
+              data: { locale, translation: value.translations[locale] },
+            })
           }
         })
         .catch((err) => sendErr({ res, err }))

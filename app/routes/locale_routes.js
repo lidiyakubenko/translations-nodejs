@@ -6,7 +6,7 @@ const sendErr = require('../constants/sendErr')
 module.exports = function (app, collection) {
   app.post('/addLocale/:projectId', (req, res) => {
     const { projectId } = req.params
-    const { locale, translations } = req.body
+    const { locale } = req.body
     const { invalid_locale, duplicate_locale } = ERROR_CODES_MAP
 
     const localeRegex = /^[a-z]{2}$/gi
@@ -17,7 +17,7 @@ module.exports = function (app, collection) {
         _id: new ObjectID(projectId),
         [key]: { $exists: false },
       },
-      update: { $set: { [key]: translations || {} } },
+      update: { $set: { [key]: {} } },
       options: { returnOriginal: false },
     }
 
