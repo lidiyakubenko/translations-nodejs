@@ -64,11 +64,11 @@ module.exports = function (app, collection) {
 
   app.post('/addKeyTranslation/:projectId/', (req, res) => {
     const { projectId } = req.params
-    const { keyTranslation } = req.body
+    const { value } = req.body
 
     const updateEveryLocale = (locale) =>
       new Promise((resolve, reject) => {
-        const key = `translations.${locale}.${keyTranslation}`
+        const key = `translations.${locale}.${value}`
 
         const params = {
           filter: {
@@ -91,7 +91,7 @@ module.exports = function (app, collection) {
           if (value === null) {
             sendErr({ res, err: ERROR_CODES_MAP.duplicate_key })
           } else {
-            sendRes({ res, data: { keyTranslation } })
+            sendRes({ res, data: { key: req.body.value } })
           }
         })
         .catch((err) => sendErr({ res, err }))
@@ -127,9 +127,9 @@ module.exports = function (app, collection) {
 
   app.post('/addTranslation/:projectId/:locale/:keyTranslation', (req, res) => {
     const { projectId, locale, keyTranslation } = req.params
-    const { translation } = req.body
+    const { value } = req.body
 
-    if (typeof translation !== 'string') {
+    if (typeof value !== 'string') {
       sendErr({ res, err: ERROR_CODES_MAP.invalid_translation })
     } else {
       const key = `translations.${locale}.${keyTranslation}`
@@ -139,7 +139,7 @@ module.exports = function (app, collection) {
           _id: new ObjectID(projectId),
           [key]: { $exists: true },
         },
-        update: { $set: { [key]: translation } },
+        update: { $set: { [key]: value } },
         options: { returnOriginal: false },
       }
       collection

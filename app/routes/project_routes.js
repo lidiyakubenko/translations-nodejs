@@ -4,10 +4,10 @@ const sendErr = require('../constants/sendErr')
 
 module.exports = function (app, collection) {
   app.post('/addProject', (req, res) => {
-    const { name } = req.body
+    const { value } = req.body
 
     collection
-      .insertOne({ name })
+      .insertOne({ name: value, translations: { en: { title: '' } } })
       .then((result) => sendRes({ res, data: result.ops[0] }))
       .catch((err) => sendErr({ res, err }))
   })
