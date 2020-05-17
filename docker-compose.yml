@@ -28,8 +28,8 @@ services:
     container_name: admin
     restart: unless-stopped
     build:
-      context: /Users/lidiya.yakubenko/WebstormProjects/admin-translations
-      dockerfile: /Users/lidiya.yakubenko/WebstormProjects/admin-translations/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     networks:
