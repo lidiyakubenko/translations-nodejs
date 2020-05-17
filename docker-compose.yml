@@ -1,0 +1,44 @@
+version: "3"
+services:
+  app:
+    container_name: translations-nodejs
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8000"
+    links:
+      - mongo
+    networks:
+      - app-network
+    command: /usr/src/translations-nodejs/node_modules/.bin/nodemon server.js
+  mongo:
+    container_name: mongo
+    image: mongo:4.2.3
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - "dbdata:/data/db"
+    networks:
+      - app-network
+
+  admin:
+    container_name: admin
+    restart: unless-stopped
+    build:
+      context: /Users/lidiya.yakubenko/WebstormProjects/admin-translations
+      dockerfile: /Users/lidiya.yakubenko/WebstormProjects/admin-translations/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:

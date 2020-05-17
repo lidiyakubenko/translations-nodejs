@@ -28,7 +28,7 @@ client.connect((err) => {
             },
             translations: {
               bsonType: 'object',
-            }
+            },
           },
         },
       },
