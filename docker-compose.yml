@@ -12,7 +12,7 @@ services:
       - mongo
     networks:
       - app-network
-    command: /usr/src/translations-nodejs/node_modules/.bin/nodemon server.js
+
   mongo:
     container_name: mongo
     image: mongo:4.2.3
